@@ -1,0 +1,7 @@
+{
+  "name": "CyberNinja-Transport",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
