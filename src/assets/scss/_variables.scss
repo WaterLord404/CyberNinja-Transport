@@ -1,0 +1,41 @@
+$icon-size: 30px;
+$smallest-margin: 1.5%;
+$small-margin: 3%;
+$small-margin-text: 2% 4% 2% 4%;
+$small-margin-horizontal: 0 3% 0 3%;
+$medium-margin-horizontal: 0 5% 0 5%;
+$small-margin-vertical: 3% 0 3% 0;
+$big-margin-vertical: 50px 0 50px 0;
+$header-height: 50px;
+$orange: #f60;
+
+
+@mixin font-product {
+  color: rgba(0, 0, 0, 0.75);
+  text-align: left;
+  margin: $small-margin-text;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font: 500 12px SF UI Display, sans-serif;
+
+  s {
+    color: rgba(0, 0, 0, 0.25);
+  }
+}
+
+@mixin button-custom {
+  background-color: $orange;
+  color: white;
+  border: 1px solid $orange;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 40px;
+  width: 140px;
+  letter-spacing: 2px;
+  font-size: small;
+  z-index: 1;
+  text-align: center;
+  overflow: hidden;
+}

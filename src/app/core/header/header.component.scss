@@ -1,0 +1,17 @@
+@import "../../../assets/scss/variables";
+@import "../../../assets/scss/grid";
+
+header {
+  background-color: white;
+  position: fixed;
+  width: 100%;
+  height: $header-height;
+
+  @include flex-row();
+
+  z-index: 100000;
+
+  img {
+    height: 100%;
+  }
+}
