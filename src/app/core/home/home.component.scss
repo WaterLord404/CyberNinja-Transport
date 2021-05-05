@@ -1,0 +1,30 @@
+@import "../../../assets/scss/grid";
+
+.menu-container {
+  @include flex-column();
+  align-items: center;
+  height: 100%;
+  width: 100%;
+
+  .button-container {
+    @include flex-row();
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+    img {
+      align-self: center;
+      height: 75%;
+      width: auto;
+    }
+    p {
+      font-weight: bolder;
+      align-self: center;
+    }
+  }
+
+  ion-button {
+    margin: 3% 0%;
+    width: 85%;
+    height: 10%;
+  }
+}
