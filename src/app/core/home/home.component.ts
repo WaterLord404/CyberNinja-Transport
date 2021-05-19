@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
-import { LocationI } from '../interfaces/locationI';
-import { GeolocationService } from '../services/geolocation.service';
 import { ShippingService } from '../services/shipping.service';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -11,13 +11,17 @@ import { ShippingService } from '../services/shipping.service';
 })
 export class HomeComponent implements OnInit {
 
+  lat: number;
+  lon: number;
+
   constructor(
     private barcodeScanner: BarcodeScanner,
-    private shippingService: ShippingService,
-    private geolocation: GeolocationService
+    private shippingService: ShippingService
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.shippingService.syncPosition();
+  }
 
   /**
    * Escanea el codigo QR y envia la información donde se encuentra el transportista
@@ -25,8 +29,7 @@ export class HomeComponent implements OnInit {
   scannerQR(): void {
     this.barcodeScanner.scan().then(barcodeData => {
 
-      this.geolocation.getPosition();
-      this.shippingService.updateOrderLocation(barcodeData.text, this.geolocation.getLocation());
+      this.shippingService.updatePosition(barcodeData.text);
 
     }).catch(err => {
       console.log('Error barcode', err);
