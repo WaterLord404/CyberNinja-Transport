@@ -5,6 +5,11 @@
   align-items: center;
   height: 100%;
   width: 100%;
+  background-image: url(../../../assets/images/background-menu.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
 
   .button-container {
     @include flex-row();

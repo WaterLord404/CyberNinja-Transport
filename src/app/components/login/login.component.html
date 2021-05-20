@@ -1,0 +1,23 @@
+<div class="container">
+  <form (ngSubmit)="onSubmit()" [formGroup]="form" class="form-container">
+    <div class="form-group">
+      <span>Username</span>
+      <input type="text" formControlName="username">
+      <label *ngIf="f.username.errors && submitted == true">
+        Username is required
+      </label>
+    </div>
+
+    <div class="form-group">
+      <span>Password</span>
+      <input type="password" formControlName="password" autocomplete="on">
+      <label *ngIf="f.password.errors && submitted == true">
+        Password is required
+      </label>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="button-custom">LOGIN</button>
+    </div>
+  </form>
+</div>

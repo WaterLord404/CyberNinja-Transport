@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
-import { ShippingService } from '../services/shipping.service';
-import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { delay } from 'rxjs/operators';
+import { ShippingService } from '../../services/shipping.service';
 
 @Component({
   selector: 'app-home',
@@ -11,16 +9,13 @@ import { delay } from 'rxjs/operators';
 })
 export class HomeComponent implements OnInit {
 
-  lat: number;
-  lon: number;
-
   constructor(
     private barcodeScanner: BarcodeScanner,
     private shippingService: ShippingService
   ) { }
 
   ngOnInit() {
-    this.shippingService.syncPosition();
+    // this.shippingService.syncPosition();
   }
 
   /**

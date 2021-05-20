@@ -10,16 +10,24 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './core/header/header.component';
 import { HomeComponent } from './core/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { IsShipperGuard } from './core/guards/is-shipper.guard';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from './components/login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 const routes: Routes = [
-  { path: '', component: HomeComponent }
+  { path: '', component: HomeComponent, canActivate: [IsShipperGuard] },
+  { path: 'login', component: LoginComponent }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent
   ],
   entryComponents: [],
   imports: [
@@ -27,6 +35,9 @@ const routes: Routes = [
     IonicModule.forRoot(),
     RouterModule.forRoot(routes),
     HttpClientModule,
+    MatSnackBarModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

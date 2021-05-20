@@ -1,13 +1,126 @@
-/*
- * App Global CSS
- * ----------------------------------------------------------------------------
- * Put style rules here that you want to apply globally. These styles are for
- * the entire app and not just one component. Additionally, this file can be
- * used as an entry point to import other CSS/Sass files to be included in the
- * output CSS.
- * For more information on global stylesheets, visit the documentation:
- * https://ionicframework.com/docs/layout/global-stylesheets
- */
+
+@import "./assets/scss/grid";
+@import "./assets/scss/variables";
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+}
+
+ul,
+a,
+span,
+button {
+  all: unset;
+  color: $orange;
+  list-style-type: none;
+}
+
+button,
+a {
+  cursor: pointer;
+  text-decoration-line: unset !important;
+}
+
+main {
+  @include flex-column();
+  margin-top: $header-height;
+}
+
+.button-custom {
+  @include button-custom();
+}
+
+// FORMS
+.container {
+  display: flex;
+  justify-content: center;
+  min-height: 85vh;
+}
+.form-container {
+  @include flex-column();
+  width: 90%;
+}
+.form-group {
+  @include flex-column();
+  justify-content: center;
+  margin-bottom: 5%;
+
+  .button-custom {
+    position: relative;
+  }
+
+  input,
+  mat-select {
+    all: unset;
+    height: 2.75rem;
+    border: 0.0625rem solid #d7dcde;
+    padding-left: 0.9375rem;
+    font-size: 0.875rem;
+    line-height: 1.03125rem;
+    border-radius: 0;
+    text-align: left;
+  }
+  label {
+    @include font-product();
+    margin: 0;
+    color: red;
+  }
+
+  span {
+    @include font-product();
+    margin: 1.5% 0;
+  }
+
+  .container-errors {
+    display: flex;
+    justify-content: left;
+  }
+}
+
+.form-footer {
+  span {
+    @include font-product();
+  }
+}
+
+//BUTTONS
+.tag-custom {
+  @include button-custom();
+  @include flex-column();
+  width: 40px;
+  height: 20px;
+  top: 16px;
+  left: 26px;
+  font-size: x-small;
+  letter-spacing: unset;
+  span {
+    color: white;
+  }
+}
+
+.relative-big-button {
+  @include button-custom();
+  top: unset;
+  left: unset;
+  transform: unset;
+  position: relative;
+  width: 100%;
+}
+
+.relative-big-button:disabled {
+  opacity: 0.4;
+  @include button-custom();
+  top: unset;
+  left: unset;
+  transform: unset;
+  position: relative;
+  width: 100%;
+}
+
 
 /* Core CSS required for Ionic components to work properly */
 @import "~@ionic/angular/css/core.css";
@@ -24,4 +137,5 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
 
