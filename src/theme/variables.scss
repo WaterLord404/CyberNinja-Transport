@@ -66,7 +66,6 @@ $app-theme: mat-light-theme((
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include angular-material-theme($app-theme);
 
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/

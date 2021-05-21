@@ -8,7 +8,7 @@ import { UserI } from '../interfaces/userI';
 })
 export class UserService {
 
-  url = 'http://localhost:8080/user/login';
+  url = 'user/login';
 
   constructor(
     private http: HttpClient
@@ -19,6 +19,6 @@ export class UserService {
    * @param user
    */
   login(user: UserI): Observable<any> {
-    return this.http.post(this.url, user, { observe: 'response' });
+    return this.http.post(this.url, user, {observe: 'response' });
   }
 }

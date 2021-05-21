@@ -21,34 +21,6 @@ export class AuthService {
   }
 
   /**
-   * get logged customer
-   * @returns UserI
-   */
-  getShipper(): UserI {
-    let user: UserI = null;
-
-    const jwt: string = localStorage.getItem('token');
-    if (jwt == null) { return; }
-
-    const jwtData = jwt.split('.')[1];
-    const decodedJwtJsonData = window.atob(jwtData);
-    const decodedJwtData = JSON.parse(decodedJwtJsonData);
-    user = decodedJwtData.user;
-
-    return user;
-  }
-
-  /**
-   * Get login status
-   * @returns boolean
-   */
-  isLoggedIn(): boolean {
-    let status = false;
-    this.isLogged.asObservable().subscribe(res => status = res);
-    return status;
-  }
-
-  /**
    * Login the user then tell all the subscribers about the new status
    */
   login(jwt: string): void {

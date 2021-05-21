@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -64,7 +65,6 @@ export class LoginComponent implements OnInit {
   resolveRequest(res: any): void {
     // Guarda el jwt
     this.authService.login(res.headers.get('Authorization'));
-    // Obtiene el carrito
     this.router.navigate(['/']);
     this.snackBarService.popup(210);
   }

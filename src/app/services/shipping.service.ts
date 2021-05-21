@@ -4,17 +4,19 @@ import { ShippingI } from '../interfaces/shippingI';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { SnackBarService } from '../core/services/snack-bar.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShippingService {
 
-  cyberNinjaURL = 'http://localhost:8080/shipping'
+  url = 'shipping'
 
   constructor(
     private geolocation: Geolocation,
     private http: HttpClient,
+    private snackBarService: SnackBarService
   ) { }
 
   /**
@@ -38,42 +40,54 @@ export class ShippingService {
   /**
    * Obtiene la posicion Lat y Long
    */
-  updatePosition(url: string): void {
+  updatePosition(barCode: string): void {
     this.geolocation.getCurrentPosition({ enableHighAccuracy: true })
       .then(data => {
-        this.updateOneOrAllShippingsPositions(data.coords.latitude, data.coords.longitude, url);
+        this.updateOneOrAllShippingsPositions(data.coords.latitude, data.coords.longitude, barCode);
 
       }).catch(err => {
-        console.log('Error getting location-', err);
+        console.log('Error getting position-', err);
       });
   }
 
-  updateOneOrAllShippingsPositions(lat: number, lon: number, url?: string) {
+  updateOneOrAllShippingsPositions(lat: number, lon: number, barCode?: string) {
     if (lat == null || lon == null) { return; }
 
     // Obtiene la direccion
     this.getCity(lat, lon).subscribe(
       (res: ShippingI) => {
         // Peticion a CyberNinja-BE para actualizar en envio
-        if (url !== undefined) {
-          this.http.post(url, {
+        if (barCode !== undefined) {
+          this.http.post(this.url + '/' + barCode, {
             county: res.county,
             state: res.state,
             village: res.village,
             status: 'INTRANSIT'
-          });
+          }).subscribe(
+            () => this.snackBarService.popup(211),
+            err => {
+              console.log(JSON.stringify(err));
+              this.snackBarService.popup(500);
+            }
+          );
         }
         // Actualiza todos los envios en camino
         else {
-          this.http.put(this.cyberNinjaURL, {
+          this.http.put(this.url, {
             county: res.county,
             state: res.state,
             village: res.village,
             status: 'INTRANSIT'
-          });
+          }).subscribe(
+            () => this.snackBarService.popup(211),
+            err => {
+              console.log(JSON.stringify(err));
+              this.snackBarService.popup(500);
+            }
+          );
         }
       },
-      err => console.log(err)
+      err => console.log(JSON.stringify(err))
     );
   }
 
@@ -83,7 +97,7 @@ export class ShippingService {
    * @param lon
    */
   private getCity(lat: number, lon: number): Observable<any> {
-    return this.http.get('https://nominatim.openstreetmap.org/reverse?lat=' + lat + '&lon=' + lon + '&format=json').pipe(
+    return this.http.get('https://nominatim.openstreetmap.org/reverse?lat=' + lat + '&lon=' + lon + '&format=json', { headers: { skip: 'true' } }).pipe(
       map(res => res['address'])
     );
   }
