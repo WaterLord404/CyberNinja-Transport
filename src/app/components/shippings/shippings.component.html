@@ -1,0 +1,10 @@
+<div class="shippings-container">
+    <div class="shipping-container" *ngFor="let shipping of shippings" (click)="openDialog(shipping)">
+      <div>
+        <p>#{{shipping.id}}</p>
+      </div>
+      <div>
+        <p>{{shipping.uuid}}</p>
+      </div>
+    </div>
+  </div>

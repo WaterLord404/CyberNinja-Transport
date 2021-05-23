@@ -30,14 +30,26 @@ export class SnackBarService {
       case 211:
         error = 'Successfully added';
         break;
+      case 212:
+        error = 'Successfully delivered';
+        break;
       case 300:
         error = 'The form contains errors';
         break;
       case 301:
         error = 'The username and password you entered did not match our records';
         break;
+      case 404:
+        error = 'Error - Shipping not found';
+        break;
+      case 409:
+        error = 'Error - Already tracked';
+        break;
       case 500:
         error = 'Something went wrong';
+        break;
+      case 501:
+        error = 'Something went wrong syncing';
         break;
       default:
         error = 'Unknown error';

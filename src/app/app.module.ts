@@ -16,11 +16,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpInterceptorService } from './core/services/http-interceptor.service';
+import { ShippingsComponent } from './components/shippings/shippings.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ShippingDialogComponent } from './components/shipping-dialog/shipping-dialog.component';
 
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [IsShipperGuard] },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'shipping', component: ShippingsComponent, canActivate: [IsShipperGuard] }
 ];
 
 @NgModule({
@@ -28,7 +32,9 @@ const routes: Routes = [
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    ShippingsComponent,
+    ShippingDialogComponent
   ],
   entryComponents: [],
   imports: [
@@ -38,7 +44,8 @@ const routes: Routes = [
     HttpClientModule,
     MatSnackBarModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

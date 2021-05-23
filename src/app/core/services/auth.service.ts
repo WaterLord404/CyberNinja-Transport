@@ -21,6 +21,16 @@ export class AuthService {
   }
 
   /**
+   * Get login status
+   * @returns boolean
+   */
+  isLoggedIn(): boolean {
+    let status = false;
+    this.isLogged.asObservable().subscribe(res => status = res);
+    return status;
+  }
+
+  /**
    * Login the user then tell all the subscribers about the new status
    */
   login(jwt: string): void {

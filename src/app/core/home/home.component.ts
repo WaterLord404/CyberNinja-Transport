@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { ShippingService } from '../../services/shipping.service';
 
@@ -11,7 +12,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private barcodeScanner: BarcodeScanner,
-    private shippingService: ShippingService
+    private shippingService: ShippingService,
+    protected router: Router
   ) { }
 
   ngOnInit() {
@@ -22,9 +24,9 @@ export class HomeComponent implements OnInit {
    * Escanea el codigo QR y envia la información donde se encuentra el transportista
    */
   scannerQR(): void {
-    this.barcodeScanner.scan().then(barcodeData => {
+    this.barcodeScanner.scan().then(qrUUID => {
 
-      this.shippingService.updatePosition(barcodeData.text);
+      this.shippingService.updatePosition(qrUUID.text);
 
     }).catch(err => {
       console.log('Error barcode', err);

@@ -1,0 +1,24 @@
+@import "../../../assets/scss/grid";
+
+.customer {
+  @include flex-row();
+  justify-content: space-between;
+  p {
+    text-align: left;
+  }
+  .customer-details {
+    text-align: right;
+    overflow: hidden;
+  }
+}
+
+.customer-name {
+  margin-right: 5%;
+  white-space: nowrap;
+}
+
+.hr {
+  border-bottom: 1px solid #ccc;
+  margin: 0% 0% 12px 0%;
+  width: 100%;
+}

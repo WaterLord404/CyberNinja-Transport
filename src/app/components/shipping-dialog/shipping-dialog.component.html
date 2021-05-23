@@ -1,0 +1,45 @@
+<div class="dialog">
+  <h1 mat-dialog-title>CUSTOMER INFO</h1>
+  <mat-dialog-content class="mat-typography">
+    <div class="customer">
+      <p class="customer-name">NAME</p>
+      <p class="customer-details">{{shipping.customer.name}}</p>
+    </div>
+    <div class="customer">
+      <p class="customer-name">SURNAME</p>
+      <p class="customer-details">{{shipping.customer.surname}}</p>
+    </div>
+    <div class="customer">
+      <p class="customer-name">TELEPHONE</p>
+      <p class="customer-details">{{shipping.customer.telephone}}</p>
+    </div>
+    <div class="customer">
+      <p class="customer-name">EMAIL</p>
+      <p class="customer-details">{{shipping.customer.email}}</p>
+    </div>
+    <div class="hr"></div>
+    <div class="customer">
+      <p class="customer-name">STATE</p>
+      <p class="customer-details">{{shipping.customer.state}}</p>
+    </div>
+    <div class="customer">
+      <p class="customer-name">COUNTY</p>
+      <p class="customer-details">{{shipping.customer.county}}</p>
+    </div>
+    <div class="customer">
+      <p class="customer-name">POSTAL CODE</p>
+      <p class="customer-details">{{shipping.customer.postalCode}}</p>
+    </div>
+    <div class="customer">
+      <p class="customer-name">VILLAGE</p>
+      <p class="customer-details">{{shipping.customer.village}}</p>
+    </div>
+    <div class="customer">
+      <p class="customer-name">ADDRESS</p>
+      <p class="customer-details">{{shipping.customer.address}}</p>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button class="relative-big-button" (click)="deliver()">DELIVER</button>
+  </mat-dialog-actions>
+</div>

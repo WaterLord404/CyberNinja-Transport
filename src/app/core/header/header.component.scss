@@ -14,4 +14,11 @@ header {
   img {
     height: 100%;
   }
+
+  div {
+    @include font-product();
+    position: absolute;
+    right: 0%;
+    opacity: 0.5;
+  }
 }
