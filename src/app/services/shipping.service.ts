@@ -122,14 +122,14 @@ export class ShippingService {
             village: res.village
           }).subscribe(
             () => { },
-            err => {
-              console.log(JSON.stringify(err));
-              this.snackBarService.popup(501);
-            }
+            () => { }
           );
         }
       },
-      err => console.log(JSON.stringify(err))
+      err => {
+        console.log(JSON.stringify(err));
+        this.snackBarService.popup(500);
+      }
     );
   }
 
