@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  domain: 'http://192.168.0.157:8080/'
+  domain: 'https://cyberninja.herokuapp.com/'
 };
 
 /*
